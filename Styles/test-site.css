@@ -1,0 +1,290 @@
+:root {
+  --mainColor: rgb(0, 160, 255);
+
+  --darkMode: rgb(40, 40, 40);
+  --darkMode2: rgb(45, 45, 45);
+
+  --lightMode: white;
+  --lightMode2: rgb(250, 250, 250);
+  --lightMode3: rgb(235, 235, 235);
+
+  --sideBarWidth: 200px;
+  --bottomBarHeight: 50px;
+}
+
+@keyframes spin {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+body {
+  position: absolute;
+  font-family: Roboto, Arial;
+  width: 100%;
+  height: 100%;
+}
+
+html.darkMode body {
+  background-color: var(--darkMode);
+  color: white;
+}
+
+html.lightMode body {
+  background-color: var(--lightMode);
+  color: black;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
+  border: 2px solid var(--mainColor) !important;
+}
+
+[type="radio"]:checked+span:after, [type="radio"].with-gap:checked+span:after {
+  background-color: var(--mainColor) !important;
+}
+
+.input-field input:focus {
+  box-shadow: 0px 1px 0px 0px var(--mainColor) !important;
+}
+
+.input-field input[type="text"]:focus+label {
+  color: var(--mainColor) !important;
+}
+
+html.darkMode hr {
+  border-color: gray;
+}
+
+html.lightMode hr {
+  border-color: lightgray;
+}
+
+/*Buttons*/
+
+button {
+  background-color: var(--mainColor) !important;
+  cursor: pointer;
+}
+
+#randomNumber, #clickAmount {
+  cursor: default;
+}
+
+html.darkMode #sideBar button:hover,
+html.darkMode #bottomBar li button:hover {
+  background-color: var(--darkMode) !important;
+}
+
+html.lightMode #sideBar button:hover,
+html.lightMode #bottomBar li button:hover {
+  background-color: var(--lightMode3) !important;
+}
+
+/*Divs*/
+
+#dateTime {
+  position: absolute;
+  top: 25px;
+  left: calc(var(--sideBarWidth) + 25px);
+  padding: 15px;
+  border-radius: 7px;
+  text-align: center;
+}
+
+html.darkMode #dateTime {
+  background-color: var(--darkMode2);
+}
+
+html.lightMode #dateTime {
+  background-color: var(--lightMode2);
+}
+
+#cube {
+  position: absolute;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  color: var(--mainColor);
+  font-size: 75px;
+  font-weight: bold;
+  width: var(--sideBarWidth);
+  height: var(--sideBarWidth);
+  transition: color 2s;
+  animation-name: spin;
+  animation-delay: 1s;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+#main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/*Random Number Generator*/
+
+#randomNumberGenerator {
+  text-align: center;
+  margin-top: 20%;
+}
+
+#generatedNumber {
+  font-size: 50px;
+  font-weight: 450;
+  padding: 50px 50px;
+}
+
+#clickAmount {
+  font-size: 20px;
+  font-weight: 450;
+  border-radius: 7px;
+}
+
+html.darkMode #clickAmount{
+  background-color: var(--darkMode2);
+}
+
+html.lightMode #clickAmount{
+  background-color: var(--lightMode2);
+  color: black;
+}
+
+/*Popups*/
+
+.overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.popupBox {
+  position: absolute;
+  max-width: 100%;
+  min-width: 10%;
+  max-height: 100%;
+  min-height: 15%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 7px;
+  z-index: 101;
+}
+
+html.darkMode .popupBox {
+  background-color: var(--darkMode2);
+}
+
+html.lightMode .popupBox {
+  background-color: var(--lightMode2);
+}
+
+.closeButton {
+  background-color: rgba(0, 0, 0, 0); 
+  padding: 10px;
+  border-radius: 50%;
+  float: right;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+html.darkMode .closeButton:hover {
+  background-color: var(--darkMode);
+}
+
+html.lightMode .closeButton:hover {
+  background-color: var(--lightMode3);
+}
+
+.popupTitle {
+  text-align: center;
+  font-weight: 450;
+  font-size: 20px;
+  padding: 10px 0px 0px 0px;
+}
+
+.popup {
+  display: none;
+  text-align: center;
+}
+
+.popupContent {
+  display: grid;
+  padding: 25px;
+}
+
+html.darkMode .popupContent input{
+  color: white;
+}
+
+#themePopup form p {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+/*Side Bar*/
+
+#sideBar {
+  width: var(--sideBarWidth);
+  height: 100%;
+}
+
+html.darkMode #sideBar {
+  background-color: var(--darkMode2);
+}
+
+html.lightMode #sideBar {
+  background-color: var(--lightMode2);
+}
+
+#sideBar button {
+  color: var(--mainColor);
+  background-color: rgba(0, 0, 0, 0) !important;
+  width: 100%;
+  height: 50px;
+  font-weight: bold;
+}
+
+#sideBar ul {
+  position: relative;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+/*Bottom Bar*/
+
+#bottomBar {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: var(--bottomBarHeight);
+}
+
+html.darkMode #bottomBar {
+  background-color: var(--darkMode2);
+}
+
+html.lightMode #bottomBar {
+  background-color: var(--lightMode2);
+}
+
+#bottomBar li {
+  width: calc(100% / 8);
+  float: left;
+}
+
+#bottomBar li button {
+  background-color: rgba(0, 0, 0, 0) !important;
+  color: var(--mainColor);
+  font-weight: bold;
+  width: 100%;
+  height: var(--bottomBarHeight);
+}
