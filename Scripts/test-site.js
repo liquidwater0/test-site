@@ -88,15 +88,44 @@ function calculate() {
   setTimeout(function() { calcTextField.value = "" }, 3000);
 }
 
-const colorTextField = document.getElementById("colorTextField");
-const colorButton = document.getElementById("colorButton");
+const mainColorPicker = document.getElementById("mainColorPicker");
 
-colorButton.addEventListener("click", changeMainColor);
-colorTextField.value = getComputedStyle(document.documentElement).getPropertyValue("--mainColor");
+mainColorPicker.addEventListener("input", changeMainColor);
 
-function changeMainColor() {
-  document.documentElement.style.setProperty("--mainColor", colorTextField.value);
+function changeMainColor(ev) {
+  const color = ev.target.value;
+  const red = parseInt(color.substr(1,2), 16);
+  const green = parseInt(color.substr(3,2), 16);
+  const blue = parseInt(color.substr(5,2), 16);
+
+  document.documentElement.style.setProperty("--mainColor", `rgb(${red}, ${green}, ${blue}`);
+  document.documentElement.style.setProperty("--buttonHover", `rgba(${red}, ${green}, ${blue}, 0.75)`);
+
+  saveMainColor();
 }
+
+function saveMainColor() {
+  localStorage.setItem("mainColor", mainColorPicker.value);
+}
+
+function getMainColor() {
+  if (localStorage.mainColor) {
+    const color = localStorage.mainColor;
+    const red = parseInt(color.substr(1,2), 16);
+    const green = parseInt(color.substr(3,2), 16);
+    const blue = parseInt(color.substr(5,2), 16);
+
+    mainColorPicker.value = localStorage.mainColor;
+    document.documentElement.style.setProperty("--mainColor", `rgb(${red}, ${green}, ${blue}`);
+    document.documentElement.style.setProperty("--buttonHover", `rgba(${red}, ${green}, ${blue}, 0.75)`);
+  } else {
+    mainColorPicker.value = "#00A0FF";
+    document.documentElement.style.setProperty("--mainColor", "rgb(0, 160, 255)");
+    document.documentElement.style.setProperty("--buttonHover", "rgba(0, 160, 255, 0.75)");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", getMainColor);
 
 const tempConvertTextField = document.getElementById("tempConvertTextField");
 const tempConvertButton = document.getElementById("tempConvertButton");
@@ -265,6 +294,7 @@ function lightMode() {
   html.classList = "lightMode";
   setTheme();
 }
+
 function darkMode() {
   html.classList = "darkMode";
   setTheme();
@@ -278,9 +308,7 @@ function reset() {
   generatedNumber.textContent = 0;
   document.title = pageTitle;
   titleTextField.value = pageTitle;
-  colorTextField.value = "rgb(0, 160, 255)";
   document.getElementById("randomNumber").textContent = 0;
-  document.documentElement.style.setProperty("--mainColor", "#2196f3");
 }
 
 //Materialize
