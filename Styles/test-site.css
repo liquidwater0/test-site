@@ -28,6 +28,7 @@ body {
   font-family: Roboto, Arial;
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
 }
 
 html.darkMode body {
@@ -286,9 +287,17 @@ html.lightMode #sideBar {
 
 #bottomBar {
   position: absolute;
+  opacity: 0.5;
   bottom: 0px;
+  transform: translateY(var(--bottomBarHeight));
   width: 100%;
   height: var(--bottomBarHeight);
+  transition: all 1s;
+}
+
+#bottomBar:hover {
+  opacity: 1;
+  transform: translateY(0px);
 }
 
 html.darkMode #bottomBar {
@@ -296,6 +305,23 @@ html.darkMode #bottomBar {
 }
 
 html.lightMode #bottomBar {
+  background-color: var(--lightMode2);
+}
+
+#openBottomBarButton {
+  position: absolute;
+  padding: 20px;
+  border-radius: 50%;
+  left: 50%;
+  cursor: pointer;
+  bottom: var(--bottomBarHeight);
+}
+
+html.darkMode #openBottomBarButton {
+  background-color: var(--darkMode2);
+}
+
+html.lightMode #openBottomBarButton {
   background-color: var(--lightMode2);
 }
 
