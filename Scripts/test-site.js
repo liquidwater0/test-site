@@ -227,6 +227,11 @@ function runCommand() {
   }
 }
 
+const bottomBar = document.getElementById("bottomBar");
+
+bottomBar.addEventListener("mouseover", function() { document.querySelector("#openBottomBarButton > i").textContent = "arrow_drop_down" });
+bottomBar.addEventListener("mouseout", function() { document.querySelector("#openBottomBarButton > i").textContent = "arrow_drop_up" });
+
 document.getElementById("getAlertButton").addEventListener("click", getAlert);
 
 function getAlert() {
