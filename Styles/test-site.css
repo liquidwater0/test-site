@@ -310,7 +310,6 @@ html.lightMode #bottomBar {
 
 #openBottomBarButton {
   position: absolute;
-  padding: 20px;
   border-radius: 50%;
   left: 50%;
   cursor: pointer;
@@ -323,6 +322,10 @@ html.darkMode #openBottomBarButton {
 
 html.lightMode #openBottomBarButton {
   background-color: var(--lightMode2);
+}
+
+#openBottomBarButton i {
+  padding: 20px;
 }
 
 #bottomBar li {
