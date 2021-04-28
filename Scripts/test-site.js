@@ -336,6 +336,12 @@ function reset() {
 
 //Materialize
 
-$(document).ready(function() {
-  $('select').formSelect();
+document.addEventListener('DOMContentLoaded', function() {
+  const select = document.querySelectorAll('select');
+  const instances = M.FormSelect.init(select, {});
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const tooltips = document.querySelectorAll('.tooltipped');
+  const instances = M.Tooltip.init(tooltips, {});
 });
